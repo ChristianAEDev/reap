@@ -1,0 +1,20 @@
+{
+    "Plans": [
+        {
+            "Name": "Echo hello world",
+            "Tasks": [
+                {
+                    "Type": "ExecCommandTask",
+                    "Description": "Echo 'Hello World' on the cmd",
+                    "Preferences": {
+                        "Command": "echo",
+                        "Args": [
+                            "Hello",
+                            "World"
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

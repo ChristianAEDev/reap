@@ -1,0 +1,40 @@
+image: golang
+
+variables:
+  REPO_NAME: github.com/ChristianAEDev/reap 
+
+before_script:
+  - go version
+  - go get -u github.com/golang/dep/cmd/dep 
+  - cd $GOPATH/src/github.com/golang/dep && go install 
+  - echo $CI_BUILD_REF
+  - echo $CI_PROJECT_DIR
+
+stages:
+  - test
+  - build
+
+test-project:
+  stage: test
+  script:
+    - mkdir -p $GOPATH/src/$REPO_NAME
+    - mv $CI_PROJECT_DIR/* $GOPATH/src/$REPO_NAME
+    - cd $GOPATH/src/$REPO_NAME
+    - dep ensure 
+    - go test $(go list ./... | grep -v /vendor/)
+
+
+build-project:
+  stage: build
+  script:
+    - mkdir -p $GOPATH/src/$REPO_NAME
+    - mv $CI_PROJECT_DIR/* $GOPATH/src/$REPO_NAME/
+    - mkdir -p $CI_PROJECT_DIR/artifacts
+    - cd $GOPATH/src/$REPO_NAME
+    - dep ensure 
+    - go build -o $CI_PROJECT_DIR/artifacts/linux/reapy
+    - GOOS=windows GOARCH=386 go build -o $CI_PROJECT_DIR/artifacts/windows/reapy.exe
+
+  artifacts:
+    paths:
+      - artifacts
