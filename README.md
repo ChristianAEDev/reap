@@ -22,17 +22,22 @@ Instead of writing a (Power-) shell script the steps are defined in a *json* fil
 
 Place your *plans.json* in the same folder as the *reap* executable.
 
+It is possible to define global variables that will be used to replace otherwise repeatitive values. (See parameter `Variables` in *plans.json* example.)
+
 A simple *plans.json* could look like the following one setting the password in a config file.
 
 ```json
 "Plans": [
         {
-            "Name": "Replace the string 'PLACEHOLDER_PASSWORD' in the file 'config.ini' with 'MyPa55w0rd' in "
+            "Name": "Replace the string 'PLACEHOLDER_PASSWORD' in the file 'config.ini' with 'MyPa55w0rd' in ",
+            "Variables":{
+              "CONFIG_PATH": "/opt/mytool/config.ini"
+            },
             "Tasks": [
                 {
                     "Type": "ReplaceInFileTask",
                     "Preferences": {
-                        "FilePath": "/opt/mytool/config.ini",
+                        "FilePath": "${CONFIG_PATH}",
                         "Replace": "PLACEHOLDER_PASSWORD",
                         "With": "MyPa55w0rd"
                     }
