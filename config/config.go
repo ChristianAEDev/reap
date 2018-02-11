@@ -159,6 +159,13 @@ func parseTask(taskMap map[string]interface{}, variables map[string]string) (tas
 				Preferences: expandPreferences(taskMap["Preferences"].(map[string]interface{}), variables),
 			},
 		}
+	case "TemplateTask":
+		task = tasks.TemplateTask{
+			RunnableTask: tasks.RunnableTask{
+				Description: description.(string),
+				Preferences: expandPreferences(taskMap["Preferences"].(map[string]interface{}), variables),
+			},
+		}
 	}
 	return task
 }
