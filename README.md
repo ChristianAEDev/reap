@@ -221,7 +221,8 @@ Write a template file to a given path. The mechanism of variables can be used to
 ```json
 {
   "Type": "TemplateTask",
-  "Description": "Dockerfile to creat an image writing 'Hello World' to stdout.",
+  "Description":
+    "Dockerfile to creat an image writing 'Hello World' to stdout.",
   "Preferences": {
     "FilePath": "/home/user/Dockerfile",
     "Template": [
@@ -238,9 +239,42 @@ Write a template file to a given path. The mechanism of variables can be used to
 
 ## Build
 
+### Windows
+
 To build the _exe_ in a a way that it requests administrator privileges (embed a _manifest_) use the following commands:
+
+Get [goversioninfo](https://github.com/josephspurrier/goversioninfo)
+
+```shell
+go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo
+```
+
+Clone the repository. (**Attention:** Must be cloned into the `$GOPATH/src` folder.)
+
+```shell
+git clone https://github.com/ChristianAEDev/reap.git
+```
+
+Navigate into the project folder
+
+```shell
+cd reap
+```
+
+Get all dependencies
+
+```shell
+dep ensure
+```
+
+Create the file needed to create the _exe_
 
 ```shell
 go generate
+```
+
+Build the programm
+
+```shell
 go build
 ```
