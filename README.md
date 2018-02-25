@@ -249,7 +249,7 @@ Get [goversioninfo](https://github.com/josephspurrier/goversioninfo)
 go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo
 ```
 
-Clone the repository. (**Attention:** Must be cloned into the `$GOPATH/src` folder.)
+Clone the repository. (**Attention:** Must be cloned into the `$GOPATH/src/github.com/ChristianAEDev/reapy` folder.)
 
 ```shell
 git clone https://github.com/ChristianAEDev/reap.git
